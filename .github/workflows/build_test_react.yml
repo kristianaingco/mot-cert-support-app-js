@@ -5,6 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
     strategy:
       matrix:
         node-version: [18.x]
@@ -13,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Unit checks
@@ -21,6 +26,7 @@ jobs:
           npm ci
           npm test -- --reporters=jest-junit
       - name: E2E checks
+        shell: bash
         run: |
           npm start &
           sleep 10
@@ -28,10 +34,10 @@ jobs:
       - name: Build production artifacts
         run: |
           npm run build --if-present
-                - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action/macos@v2
-        if: always()
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        if: (!cancelled())
         with:
           files: |
-            junit.xml
+            reports/junit/*.xml
             reports/e2e-report/*.xml

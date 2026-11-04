@@ -90,6 +90,6 @@ The `build` job runs on `windows-latest` with Node.js `18.x`:
 1. Check out the repository.
 2. Install that Node.js version.
 3. **Unit checks.** `npm ci`, then `npm test` with the `jest-junit` reporter. GitHub Actions sets `CI`, so Jest exits instead of watching.
-4. **End-to-end checks.** Start the app in the background (`npm start`), wait 10 seconds, then `npx wdio run ./wdio.conf.js`.
+4. **End-to-end checks.** In bash, start the app in the background (`npm start`), wait 10 seconds, then `npx wdio run ./wdio.conf.js`.
 5. **Production build.** `npm run build`.
-6. **Publish test results.** [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action) is configured to read `junit.xml` and `reports/e2e-report/*.xml`, including when an earlier step fails (`if: always()`). In the workflow file those `uses` / `if` / `with` keys sit on the production-build step, which already has a `run` script. GitHub Actions accepts either `run` or `uses` on a step, so publishing does not run until that block is its own step.
+6. **Publish test results.** [EnricoMi/publish-unit-test-result-action](https://github.com/EnricoMi/publish-unit-test-result-action) (`windows@v2`) reads `reports/junit/*.xml` and `reports/e2e-report/*.xml`. It still runs when an earlier step fails (`if: (!cancelled())`).
