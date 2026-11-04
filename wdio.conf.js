@@ -51,7 +51,10 @@ exports.config = {
     //
     capabilities: [{
         browserName: 'chrome',
-        pageLoadStrategy: 'eager'
+        pageLoadStrategy: 'eager',
+        'goog:chromeOptions': {
+            args: ['headless', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage']
+        }
     }],
 
     //
