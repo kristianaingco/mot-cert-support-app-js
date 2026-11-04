@@ -62,10 +62,12 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/register": "^7.23.7",
     "@wdio/allure-reporter": "^8.36.1",
-    "@wdio/cli": "^8.36.1",
+    "@wdio/cli": "^10.0.2",
+    "@wdio/globals": "^10.0.2",
     "@wdio/junit-reporter": "^8.36.1",
-    "@wdio/local-runner": "^8.36.1",
-    "@wdio/mocha-framework": "^8.36.1",
+    "@wdio/local-runner": "^10.0.2",
+    "@wdio/mocha-framework": "^10.0.1",
+    "@wdio/spec-reporter": "^10.0.1",
     "concurrently": "^8.2.2",
     "wdio-wait-for": "^3.0.11"
   }
