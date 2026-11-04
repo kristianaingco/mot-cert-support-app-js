@@ -6,7 +6,7 @@ It is a React app (Create React App) for signing in and working with projects, t
 
 ## Prerequisites
 
-- Node.js 18 and npm. The pipeline pins Node.js `18.x`.
+- Node.js 22 and npm. The pipeline pins Node.js `22.x`. WebdriverIO 10 requires Node.js 22.19 or newer.
 - A Java runtime. `npm start` launches `mocks/wiremock-standalone.jar`.
 - Google Chrome. End-to-end tests run in headless Chrome through WebdriverIO.
 
@@ -85,7 +85,7 @@ That runs `wdio run ./wdio.conf.js`. `test/specs/test.e2e.js` targets `https://t
 
 Continuous integration is the GitHub Actions workflow [`.github/workflows/build_test_react.yml`](.github/workflows/build_test_react.yml) (`NodeJS CI`). It runs on every push to the repository. There is no deploy step; the job builds production artifacts and publishes test results.
 
-The `build` job runs on `windows-latest` with Node.js `18.x`:
+The `build` job runs on `windows-latest` with Node.js `22.x`:
 
 1. Check out the repository.
 2. Install that Node.js version.
